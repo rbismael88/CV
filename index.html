@@ -1,787 +1,730 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mi Portfolio Digital</title>
+    <title>Ismael Rodriguez - Portfolio</title>
     <style>
-      :root {
-        --bg-color: #0f172a; /* Azul muy oscuro */
-        --text-color: #e2e8f0; /* Gris claro */
-        --accent-color: #38bdf8; /* Azul eléctrico */
-        --card-bg: #1e293b;
-      }
+        :root {
+            --bg-color: #0f172a; /* Azul muy oscuro */
+            --text-color: #e2e8f0; /* Gris claro */
+            --accent-color: #38bdf8; /* Azul eléctrico */
+            --card-bg: #1e293b;
+        }
 
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        margin: 0;
-        line-height: 1.6;
-      }
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.6;
+        }
 
-      /* Tipografía y Hero */
-      header {
-        height: 90vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        background: radial-gradient(circle at center, #1e293b 0%, #0f172a 70%);
-      }
+        /* --- Tipografía y Hero --- */
+        header {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 70%);
+        }
 
-      h1 {
-        font-size: 4rem;
-        margin: 0;
-        background: linear-gradient(to right, var(--accent-color), #818cf8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        letter-spacing: -2px;
-      }
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            background: linear-gradient(to right, var(--accent-color), #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+        }
 
-      h2 {
-        font-weight: 300;
-        color: #94a3b8;
-        margin-top: 10px;
-      }
+        h2 {
+            font-weight: 300;
+            color: #94a3b8;
+            margin-top: 10px;
+        }
 
-      /* Contenedor Principal */
-      .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 40px 20px;
-      }
+        /* --- Contenedor Principal --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-      /* Grid de Proyectos */
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        margin-top: 40px;
-      }
+        /* --- Grid de Proyectos --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
 
-      .card {
-        background-color: var(--card-bg);
-        padding: 20px;
-        border-radius: 12px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
+        .card {
+            background-color: var(--card-bg);
+            padding: 0 !important;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
 
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        border-color: var(--accent-color);
-      }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-color);
+        }
 
-      /* Botón de Contacto */
-      .btn {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 12px 30px;
-        background-color: var(--accent-color);
-        color: var(--bg-color);
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 50px;
-        transition: opacity 0.3s;
-      }
-      .btn:hover {
-        opacity: 0.9;
-      }
+        /* --- Botón General --- */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: opacity 0.3s;
+        }
 
-      /* --- Estilos para la Línea de Tiempo (Experiencia) --- */
-      .timeline-section {
-        margin-top: 80px;
-      }
+        .btn:hover {
+            opacity: 0.9;
+        }
 
-      .timeline {
-        position: relative;
-        max-width: 800px;
-        margin: 0 auto; /* Centrado */
-      }
+        /* --- Estilos de Contacto (Acordeón) --- */
+        .contact-info {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease;
+            opacity: 0;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
 
-      /* La línea vertical */
-      .timeline::after {
-        content: "";
-        position: absolute;
-        width: 2px;
-        background-color: #334155; /* Color gris oscuro para la línea */
-        top: 0;
-        bottom: 0;
-        left: 20px; /* Posición de la línea */
-        margin-left: -1px;
-      }
+        .contact-info.active {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 20px;
+        }
 
-      .timeline-item {
-        padding: 10px 40px;
-        position: relative;
-        background-color: inherit;
-        width: 100%;
-        box-sizing: border-box;
-      }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #fff;
+            width: fit-content;
+            transition: background 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-      /* El punto (dot) en la línea */
-      .timeline-item::after {
-        content: "";
-        position: absolute;
-        width: 16px;
-        height: 16px;
-        right: auto;
-        left: 12px; /* Alineado con la línea vertical */
-        top: 15px;
-        background-color: var(--bg-color);
-        border: 3px solid var(--accent-color);
-        border-radius: 50%;
-        z-index: 1;
-        transition: background-color 0.3s;
-      }
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
 
-      .timeline-item:hover::after {
-        background-color: var(--accent-color);
-      }
+        .whatsapp-link:hover { border-color: #25D366; color: #25D366; }
+        .email-link:hover { border-color: #EA4335; color: #EA4335; }
 
-      .timeline-content {
-        padding: 20px;
-        background-color: var(--card-bg);
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
+        /* --- Estilos para la Línea de Tiempo --- */
+        .timeline-section {
+            margin-top: 80px;
+        }
 
-      .date {
-        font-size: 0.85rem;
-        color: var(--accent-color);
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 5px;
-        display: block;
-      }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-      .role {
-        font-size: 1.5rem;
-        margin: 0 0 5px 0;
-        color: #fff;
-      }
+        .timeline::after { /* Línea vertical */
+            content: "";
+            position: absolute;
+            width: 2px;
+            background-color: #334155;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            margin-left: -1px;
+        }
 
-      .company {
-        font-size: 1.1rem;
-        color: #94a3b8;
-        margin-bottom: 15px;
-        font-weight: 300;
-      }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
-      /* --- Estilos para Educación (Lista limpia) --- */
-      .education-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
-      }
+        .timeline-item::after { /* El punto (dot) */
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: auto;
+            left: 12px;
+            top: 15px;
+            background-color: var(--bg-color);
+            border: 3px solid var(--accent-color);
+            border-radius: 50%;
+            z-index: 1;
+            transition: background-color 0.3s;
+        }
 
-      .edu-item {
-        border-left: 3px solid var(--accent-color);
-        padding-left: 20px;
-      }
+        .timeline-item:hover::after {
+            background-color: var(--accent-color);
+        }
 
-      .edu-degree {
-        font-size: 1.2rem;
-        color: #fff;
-        margin: 0;
-        font-weight: 600;
-      }
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-      .edu-school {
-        color: #94a3b8;
-        margin: 5px 0;
-      }
+        .date {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+        }
 
-      /* --- NUEVO: Estilos para Foto de Perfil --- */
-      .profile-container {
-        margin-bottom: 25px;
-        position: relative;
-      }
+        .role {
+            font-size: 1.5rem;
+            margin: 0 0 5px 0;
+            color: #fff;
+        }
 
-      .profile-img {
-        width: 180px;
-        height: 180px;
-        border-radius: 50%; /* Círculo perfecto */
-        object-fit: cover; /* Asegura que la foto no se deforme */
-        border: 4px solid var(--accent-color); /* Borde del color de acento */
-        box-shadow: 0 0 30px rgba(56, 189, 248, 0.4); /* Un "glow" o resplandor elegante */
-        transition: transform 0.3s ease;
-      }
+        .company {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
 
-      .profile-img:hover {
-        transform: scale(1.05); /* Pequeño zoom al pasar el mouse */
-      }
+        /* --- Estilos para Educación --- */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
 
-      /* --- ACTUALIZACIÓN: Rediseño de Tarjetas Multimedia --- */
-      /* Modificamos la tarjeta existente para quitar el padding inicial */
-      .card {
-        padding: 0 !important; /* Sobreescribimos el padding anterior */
-        overflow: hidden; /* Para que la imagen respete los bordes redondeados */
-        display: flex;
-        flex-direction: column;
-      }
+        .edu-item {
+            border-left: 3px solid var(--accent-color);
+            padding-left: 20px;
+        }
 
-      /* Contenedor para la imagen o video en la parte superior de la tarjeta */
-      .card-media {
-        height: 220px; /* Altura fija para uniformidad */
-        width: 100%;
-        background-color: #000;
-        position: relative;
-      }
+        .edu-degree {
+            font-size: 1.2rem;
+            color: #fff;
+            margin: 0;
+            font-weight: 600;
+        }
 
-      /* Estilo para imágenes y videos dentro de la tarjeta */
-      .card-media img,
-      .card-media video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Cubre todo el espacio sin deformarse */
-        display: block;
-        transition: opacity 0.3s ease;
-      }
+        .edu-school {
+            color: #94a3b8;
+            margin: 5px 0;
+        }
 
-      .card:hover .card-media img {
-        opacity: 0.9; /* Leve efecto al pasar el mouse */
-      }
+        /* --- Estilos Foto Perfil --- */
+        .profile-container {
+            margin-bottom: 25px;
+            position: relative;
+        }
 
-      /* Pequeña etiqueta para indicar si es video (opcional) */
-      .media-type-badge {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: rgba(0, 0, 0, 0.7);
-        color: #fff;
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 0.7rem;
-        font-weight: bold;
-        text-transform: uppercase;
-      }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+            transition: transform 0.3s ease;
+        }
 
-      /* Contenedor para el texto debajo de la imagen */
-      .card-content {
-        padding: 25px;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-      }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
 
-      /* Ajuste de títulos dentro de la nueva estructura */
-      .card-content h4 {
-        margin-top: 0;
-        margin-bottom: 5px;
-        font-size: 1.3rem;
-      }
+        /* --- Estilos Multimedia / Carrusel --- */
+        .card-media {
+            height: 220px;
+            width: 100%;
+            background-color: #000;
+            position: relative;
+        }
 
-            /* --- Estilos para el Carrusel en Tarjetas --- */
-      .carousel {
-          position: relative;
-          width: 100%;
-          height: 100%;
-      }
-      
-      .carousel-track-container {
-          height: 100%;
-          position: relative;
-          overflow: hidden; /* Oculta las imágenes que están a los lados */
-      }
-      
-      .carousel-track {
-          display: flex;
-          height: 100%;
-          transition: transform 0.4s ease-in-out; /* Animación suave */
-      }
-      
-      .carousel-slide {
-          min-width: 100%; /* Cada slide ocupa el 100% del ancho de la tarjeta */
-          height: 100%;
-      }
-      
-      .carousel-slide img,
-      .carousel-slide video {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-      }
-      
-      /* Botones de navegación (Flechas) */
-      .carousel-btn {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          background: rgba(0, 0, 0, 0.6);
-          color: white;
-          border: none;
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          cursor: pointer;
-          z-index: 10;
-          font-size: 1.2rem;
-          display: flex; /* Flex para centrar la flecha */
-          justify-content: center;
-          align-items: center;
-          opacity: 0; /* Ocultos por defecto */
-          transition: opacity 0.3s, background 0.3s;
-      }
-      
-      /* Mostrar flechas solo cuando el mouse está encima de la tarjeta */
-      .card:hover .carousel-btn {
-          opacity: 1;
-      }
-      
-      .carousel-btn:hover {
-          background: var(--accent-color);
-      }
-      
-      .carousel-btn.prev { left: 10px; }
-      .carousel-btn.next { right: 10px; }
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
 
-      /* --- Estilos para Botones de Certificados --- */
-      .cert-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px; /* Espacio entre icono y texto */
-          margin-top: 15px;
-          padding: 6px 16px;
-          border: 1px solid var(--accent-color);
-          border-radius: 50px; /* Bordes totalmente redondos */
-          color: var(--accent-color);
-          text-decoration: none;
-          font-size: 0.85rem;
-          font-weight: 600;
-          transition: all 0.3s ease;
-          background-color: transparent;
-      }
+        .carousel-track-container {
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
 
-      .cert-btn:hover {
-          background-color: var(--accent-color);
-          color: var(--bg-color); /* El texto se vuelve oscuro para contraste */
-          box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); /* Pequeño brillo */
-          transform: translateY(-2px);
-      }
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.4s ease-in-out;
+        }
 
-      /* Estilo para el icono SVG dentro del botón */
-      .cert-btn svg {
-          width: 16px;
-          height: 16px;
-          fill: currentColor; /* El icono toma el color del texto */
-      }
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+        }
 
-      /* Estilos para el contenedor de contacto oculto */
-      .contact-info {
-          max-height: 0; /* Oculto por defecto */
-          overflow: hidden;
-          transition: max-height 0.4s ease-out, opacity 0.4s ease;
-          opacity: 0;
-          margin-top: 10px;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          align-items: center;
-      }
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-      /* Clase que activaremos con JavaScript para mostrarlo */
-      .contact-info.active {
-          max-height: 200px; /* Altura suficiente para mostrar el contenido */
-          opacity: 1;
-          margin-top: 20px;
-      }
+        .card:hover .card-media img {
+            opacity: 0.9;
+        }
 
-      /* Estilos de los botones de contacto individuales */
-      .contact-link {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          background: rgba(255, 255, 255, 0.1);
-          padding: 10px 20px;
-          border-radius: 50px;
-          text-decoration: none;
-          color: #fff;
-          width: fit-content;
-          transition: background 0.3s;
-          border: 1px solid rgba(255,255,255,0.1);
-      }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s, background 0.3s;
+        }
 
-      .contact-link:hover {
-          background: rgba(255, 255, 255, 0.2);
-      }
+        .card:hover .carousel-btn {
+            opacity: 1;
+        }
 
-      /* Colores específicos */
-      .whatsapp-link:hover { border-color: #25D366; color: #25D366; }
-      .email-link:hover { border-color: #EA4335; color: #EA4335; }
+        .carousel-btn:hover {
+            background: var(--accent-color);
+        }
+
+        .carousel-btn.prev { left: 10px; }
+        .carousel-btn.next { right: 10px; }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h4 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+
+        /* --- Botones Certificados --- */
+        .cert-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 6px 16px;
+            border: 1px solid var(--accent-color);
+            border-radius: 50px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background-color: transparent;
+        }
+
+        .cert-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .cert-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
     </style>
-  </head>
-  
-  <body>
+</head>
+
+<body>
+
     <header>
-      <div class="profile-container">
-          <img src="media/Perfil_con_fondo.jpg" alt="Foto de Perfil Ismael" class="profile-img" />
-      </div>
+        <div class="profile-container">
+            <img src="media/Perfil_con_fondo.jpg" alt="Foto de Perfil Ismael" class="profile-img" />
+        </div>
 
-      <h1>Ismael Rodriguez Belliard</h1>
-      <h2>Desarrollador Full Stack</h2>
+        <h1>Ismael Rodriguez Belliard</h1>
+        <h2>Desarrollador Full Stack</h2>
 
-      <button onclick="toggleContact()" class="btn" style="border:none; cursor:pointer; font-size:1rem;">
-          Contáctame
-      </button>
+        <button onclick="toggleContact()" class="btn" style="border:none; cursor:pointer; font-size:1rem;">
+            Contáctame
+        </button>
 
-      <div class="contact-info" id="contactInfoBox">
-          
-          <a href="https://wa.me/18295910723" target="_blank" class="contact-link whatsapp-link">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
-              </svg>
-              829-591-0723
-          </a>
+        <div class="contact-info" id="contactInfoBox">
+            <a href="https://wa.me/18295910723" target="_blank" class="contact-link whatsapp-link">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
+                </svg>
+                829-591-0723
+            </a>
 
-          <a href="mailto:rbismael88@gmail.com" class="contact-link email-link">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
-              </svg>
-              rbismael88@gmail.com
-          </a>
-      </div>
+            <a href="mailto:rbismael88@gmail.com" class="contact-link email-link">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                </svg>
+                rbismael88@gmail.com
+            </a>
+        </div>
     </header>
 
     <div class="container">
-    <h3 style="border-bottom: 2px solid var(--accent-color); display: inline-block; margin-bottom: 30px;">
-        Galería de Proyectos
-    </h3>
+        <h3 style="border-bottom: 2px solid var(--accent-color); display: inline-block; margin-bottom: 30px;">
+            Galería de Proyectos
+        </h3>
 
-    <div class="grid">
+        <div class="grid">
 
-        <div class="card">
-            <div class="card-media">
-                <div class="carousel">
-                    <button class="carousel-btn prev">&lt;</button>
-                    <div class="carousel-track-container">
-                        <ul class="carousel-track" style="padding: 0; margin: 0; list-style: none;">
-                            <li class="carousel-slide">
-                                <img src="media/handyman_admin_dashboard_design.png" alt="Dashboard Principal">
-                            </li>
-                        </ul>
+            <div class="card">
+                <div class="card-media">
+                    <div class="carousel">
+                        <button class="carousel-btn prev">&lt;</button>
+                        <div class="carousel-track-container">
+                            <ul class="carousel-track" style="padding: 0; margin: 0; list-style: none;">
+                                <li class="carousel-slide">
+                                    <img src="media/handyman_admin_dashboard_design.png" alt="Dashboard Principal">
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="carousel-btn next">&gt;</button>
                     </div>
-                    <button class="carousel-btn next">&gt;</button>
+                </div>
+                <div class="card-content">
+                    <h4>Handyman Work</h4>
+                    <p style="color: var(--accent-color); font-size: 0.9rem; font-weight:bold;">Full Stack / Python</p>
+                    <p>Desarrollo del backend y frontend. La imagen muestra el dashboard principal diseñado para gestionar grandes volúmenes de datos.</p>
                 </div>
             </div>
-            <div class="card-content">
-                <h4>Handyman Work</h4>
-                <p style="color: var(--accent-color); font-size: 0.9rem; font-weight:bold;">Full Stack / Python</p>
-                <p>Desarrollo del backend y frontend. La imagen muestra el dashboard principal diseñado para gestionar grandes volúmenes de datos.</p>
-            </div>
-        </div>
 
-        <div class="card">
-            <div class="card-media">
-                <div class="carousel">
-                    <button class="carousel-btn prev">&lt;</button>
-                    <div class="carousel-track-container">
-                        <ul class="carousel-track" style="padding: 0; margin: 0; list-style: none;">
-                            <li class="carousel-slide">
-                                <img src="media/Residencial_Poinciana/IMG_01.png" alt="Instalación eléctrica 1">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/Residencial_Poinciana/IMG_02.jpg" alt="Instalación eléctrica 2">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/Residencial_Poinciana/IMG_03.jpg" alt="Instalación eléctrica 3">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/Residencial_Poinciana/IMG_09.jpg" alt="Instalación eléctrica 4">
-                            </li>
-                        </ul>
+            <div class="card">
+                <div class="card-media">
+                    <div class="carousel">
+                        <button class="carousel-btn prev">&lt;</button>
+                        <div class="carousel-track-container">
+                            <ul class="carousel-track" style="padding: 0; margin: 0; list-style: none;">
+                                <li class="carousel-slide">
+                                    <img src="media/Residencial_Poinciana/IMG_01.png" alt="Instalación eléctrica 1">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/Residencial_Poinciana/IMG_02.jpg" alt="Instalación eléctrica 2">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/Residencial_Poinciana/IMG_03.jpg" alt="Instalación eléctrica 3">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/Residencial_Poinciana/IMG_09.jpg" alt="Instalación eléctrica 4">
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="carousel-btn next">&gt;</button>
                     </div>
-                    <button class="carousel-btn next">&gt;</button>
+                </div>
+                <div class="card-content">
+                    <h4>Proyecto Residencial Poinciana</h4>
+                    <p style="color: var(--accent-color); font-size: 0.9rem; font-weight: bold;">Electricidad & Plomería Residencial</p>
+                    <p>Las imágenes presentan la colocación e instalación de las tuberías eléctricas y de plomería en cada uno de los apartamentos construidos en el Residencial Poinciana.</p>
                 </div>
             </div>
-            <div class="card-content">
-                <h4>Proyecto Residencial Poinciana</h4>
-                <p style="color: var(--accent-color); font-size: 0.9rem; font-weight: bold;">Electricidad & Plomería Residencial</p>
-                <p>Las imágenes presentan la colocación e instalación de las tuberías eléctricas y de plomería en cada uno de los apartamentos construidos en el Residencial Poinciana.</p>
-            </div>
-        </div>
 
-        <div class="card">
-            <div class="card-media">
-                <div class="carousel">
-                    <button class="carousel-btn prev">&lt;</button>
-                    <div class="carousel-track-container">
-                        <ul class="carousel-track" style="padding: 0; margin: 0; list-style: none;">
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG01.jpg" alt="Sistema Alarma 1">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG02.jpg" alt="Sistema Alarma 2">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG03.jpg" alt="Sistema Alarma 3">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG04.jpg" alt="Sistema Alarma 4">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG05.jpg" alt="Sistema Alarma 5">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG06.jpg" alt="Sistema Alarma 6">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG07.jpg" alt="Sistema Alarma 7">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG08.jpg" alt="Sistema Alarma 8">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG09.jpg" alt="Sistema Alarma 9">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG10.jpg" alt="Sistema Alarma 10">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG11.jpg" alt="Sistema Alarma 11">
-                            </li>
-                            <li class="carousel-slide">
-                                <img src="media/MM/IMG12.jpg" alt="Sistema Alarma 12">
-                            </li>
-                        </ul>
+            <div class="card">
+                <div class="card-media">
+                    <div class="carousel">
+                        <button class="carousel-btn prev">&lt;</button>
+                        <div class="carousel-track-container">
+                            <ul class="carousel-track" style="padding: 0; margin: 0; list-style: none;">
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG01.jpg" alt="Sistema Alarma 1">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG02.jpg" alt="Sistema Alarma 2">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG03.jpg" alt="Sistema Alarma 3">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG04.jpg" alt="Sistema Alarma 4">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG05.jpg" alt="Sistema Alarma 5">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG06.jpg" alt="Sistema Alarma 6">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG07.jpg" alt="Sistema Alarma 7">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG08.jpg" alt="Sistema Alarma 8">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG09.jpg" alt="Sistema Alarma 9">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG10.jpg" alt="Sistema Alarma 10">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG11.jpg" alt="Sistema Alarma 11">
+                                </li>
+                                <li class="carousel-slide">
+                                    <img src="media/MM/IMG12.jpg" alt="Sistema Alarma 12">
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="carousel-btn next">&gt;</button>
                     </div>
-                    <button class="carousel-btn next">&gt;</button>
+                </div>
+                <div class="card-content">
+                    <h4>Molinos Modernos</h4>
+                    <p style="color: var(--accent-color); font-size: 0.9rem; font-weight: bold;">Alarma contra incendio y de seguridad</p>
+                    <p>Las imágenes presentan la colocación e instalación del cableado y el sistema de alarma contra incendio y de seguridad.</p>
                 </div>
             </div>
-            <div class="card-content">
-                <h4>Molinos Modernos</h4>
-                <p style="color: var(--accent-color); font-size: 0.9rem; font-weight: bold;">Alarma contra incendio y de seguridad</p>
-                <p>Las imágenes presentan la colocación e instalación del cableado y el sistema de alarma contra incendio y de seguridad.</p>
-            </div>
-        </div>
 
-    </div> </div>
-
-    <div class="container timeline-section">
-      <h3
-        style="
-          border-bottom: 2px solid var(--accent-color);
-          display: inline-block;
-          margin-bottom: 30px;
-        "
-      >
-        Experiencia Laboral
-      </h3>
-
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <span class="date">2025 - PRESENTE</span>
-          <h4 class="role">Senior Web Developer</h4>
-        <div class="company">Freelance / Proyectos Propios</div>
-          <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
-              <li>Desarrollo full-stack utilizando Python (Django) y tecnologías frontend modernas. Creación de soluciones web escalables y mantenimiento de arquitecturas basadas en Docker.</li>  
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <span class="date">2024 - 2025</span>
-          <h4 class="role">Técnico de Infraestructura (Electricidad & Plomería)</h4>
-          <div class="company">Proyecto Residencial Poinciana</div>
-          
-          <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
-              <li>Interpretación de planos técnicos para la ejecución precisa de instalaciones eléctricas e hidrosanitarias en obra gris.</li>
-              <li>Instalación de canalizaciones, cableado de circuitos y montaje de centros de carga (Breakers) bajo normas de seguridad.</li>
-              <li>Colocación de redes de agua potable (CPVC) y drenaje sanitario (PVC), incluyendo pruebas de presión y montaje de artefactos finales.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <span class="date">2018 - 2021</span>
-          <h4 class="role">Técnico de Sistemas Contra Incendio</h4>
-          <div class="company">Incifire</div>
-          
-          <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
-              <li>Instalación de infraestructura física (EMT) y cableado certificado bajo normativas de seguridad y protección civil.</li>
-              <li>Montaje y conexión de dispositivos de detección (humo/calor) y notificación audiovisual.</li>
-              <li>Configuración y programación de Paneles de Control (FACP) en sistemas direccionables e inteligentes, y resolución de fallas de circuito.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <span class="date">2016 - 2018</span>
-          <h4 class="role">Técnico en Telecomunicaciones</h4>
-          <div class="company">Claro Dominicana</div>
-          
-          <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
-              <li>Despliegue y aprovisionamiento de servicios de Fibra Óptica (FTTH/GPON) e Internet de alta velocidad en la "última milla".</li>
-              <li>Configuración de equipos terminales (ONT, Routers) y optimización de redes Wi-Fi residenciales y comerciales.</li>
-              <li>Diagnóstico técnico y resolución de averías utilizando herramientas de medición de precisión óptica y de red.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <span class="date">2014 - 2016</span>
-          <h4 class="role">Técnico de Seguridad Electrónica & Configuración</h4>
-          <div class="company">Icamsee</div>
-          
-          <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
-              <li>Instalación y configuración avanzada de sistemas CCTV (IP/Análogos), NVRs y gestión de redes para visualización remota.</li>
-              <li>Implementación de sistemas de Control de Acceso (Biométricos/RFID) y su integración con software de gestión de personal.</li>
-              <li>Programación de paneles de alarma, zonificación de sensores y montaje de infraestructura (canalización y cableado).</li>
-          </ul>
-        </div>
-      </div>
+        </div> </div> <div class="container timeline-section">
+        <h3 style="border-bottom: 2px solid var(--accent-color); display: inline-block; margin-bottom: 30px;">
+            Experiencia Laboral
+        </h3>
 
         <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="date">2010 - 2013</span>
-            <h4 class="role">Instalador de Infraestructura de Redes</h4>
-            <div class="company">Hadom Dominicana</div>
-            
-            <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
-                <li>Implementación de sistemas de cableado estructurado (Voz y Datos) y fibra óptica bajo normativas técnicas.</li>
-                <li>Montaje, organización y "peinado" de Racks de comunicaciones y Patch Panels.</li>
-                <li>Instalación física de equipos activos (Cámaras CCTV, Access Points, Switches) y certificación de puntos de red.</li>
-            </ul>
-          </div>
+            <div class="timeline-content">
+                <span class="date">2025 - PRESENTE</span>
+                <h4 class="role">Senior Web Developer</h4>
+                <div class="company">Freelance / Proyectos Propios</div>
+                <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
+                    <li>Desarrollo full-stack utilizando Python (Django) y tecnologías frontend modernas. Creación de soluciones web escalables y mantenimiento de arquitecturas basadas en Docker.</li>
+                </ul>
+            </div>
         </div>
 
         <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="date">2008 - 2010</span> 
-            <h4 class="role">Help Desk / Service Desk Analyst</h4>
-            <div class="company">CEMEX Dominicana</div>
-            
-            <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
-                <li>Soporte técnico de Nivel 1 y 2 a usuarios corporativos y remotos, asegurando el cumplimiento de SLAs.</li>
-                <li>Gestión de usuarios y permisos mediante Active Directory y soporte a infraestructura de red básica.</li>
-                <li>Mantenimiento preventivo y correctivo de hardware, configuración de VPN y soporte a aplicaciones de negocio (ERP).</li>
-            </ul>
-          </div>
+            <div class="timeline-content">
+                <span class="date">2024 - 2025</span>
+                <h4 class="role">Técnico de Infraestructura (Electricidad & Plomería)</h4>
+                <div class="company">Proyecto Residencial Poinciana</div>
+                <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
+                    <li>Interpretación de planos técnicos para la ejecución precisa de instalaciones eléctricas e hidrosanitarias en obra gris.</li>
+                    <li>Instalación de canalizaciones, cableado de circuitos y montaje de centros de carga (Breakers) bajo normas de seguridad.</li>
+                    <li>Colocación de redes de agua potable (CPVC) y drenaje sanitario (PVC), incluyendo pruebas de presión y montaje de artefactos finales.</li>
+                </ul>
+            </div>
         </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <span class="date">2018 - 2021</span>
+                <h4 class="role">Técnico de Sistemas Contra Incendio</h4>
+                <div class="company">Incifire</div>
+                <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
+                    <li>Instalación de infraestructura física (EMT) y cableado certificado bajo normativas de seguridad y protección civil.</li>
+                    <li>Montaje y conexión de dispositivos de detección (humo/calor) y notificación audiovisual.</li>
+                    <li>Configuración y programación de Paneles de Control (FACP) en sistemas direccionables e inteligentes, y resolución de fallas de circuito.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <span class="date">2016 - 2018</span>
+                <h4 class="role">Técnico en Telecomunicaciones</h4>
+                <div class="company">Claro Dominicana</div>
+                <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
+                    <li>Despliegue y aprovisionamiento de servicios de Fibra Óptica (FTTH/GPON) e Internet de alta velocidad en la "última milla".</li>
+                    <li>Configuración de equipos terminales (ONT, Routers) y optimización de redes Wi-Fi residenciales y comerciales.</li>
+                    <li>Diagnóstico técnico y resolución de averías utilizando herramientas de medición de precisión óptica y de red.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <span class="date">2014 - 2016</span>
+                <h4 class="role">Técnico de Seguridad Electrónica & Configuración</h4>
+                <div class="company">Icamsee</div>
+                <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
+                    <li>Instalación y configuración avanzada de sistemas CCTV (IP/Análogos), NVRs y gestión de redes para visualización remota.</li>
+                    <li>Implementación de sistemas de Control de Acceso (Biométricos/RFID) y su integración con software de gestión de personal.</li>
+                    <li>Programación de paneles de alarma, zonificación de sensores y montaje de infraestructura (canalización y cableado).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <span class="date">2010 - 2013</span>
+                <h4 class="role">Instalador de Infraestructura de Redes</h4>
+                <div class="company">Hadom Dominicana</div>
+                <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
+                    <li>Implementación de sistemas de cableado estructurado (Voz y Datos) y fibra óptica bajo normativas técnicas.</li>
+                    <li>Montaje, organización y "peinado" de Racks de comunicaciones y Patch Panels.</li>
+                    <li>Instalación física de equipos activos (Cámaras CCTV, Access Points, Switches) y certificación de puntos de red.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <span class="date">2008 - 2010</span>
+                <h4 class="role">Help Desk / Service Desk Analyst</h4>
+                <div class="company">CEMEX Dominicana</div>
+                <ul style="margin: 10px 0; padding-left: 20px; color: #cbd5e1;">
+                    <li>Soporte técnico de Nivel 1 y 2 a usuarios corporativos y remotos, asegurando el cumplimiento de SLAs.</li>
+                    <li>Gestión de usuarios y permisos mediante Active Directory y soporte a infraestructura de red básica.</li>
+                    <li>Mantenimiento preventivo y correctivo de hardware, configuración de VPN y soporte a aplicaciones de negocio (ERP).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <div class="container" style="margin-top: 60px; margin-bottom: 80px;">
-      <h3 style="border-bottom: 2px solid var(--accent-color); display:inline-block; margin-bottom: 30px;">
-          Formación Académica
-      </h3>
+        <h3 style="border-bottom: 2px solid var(--accent-color); display:inline-block; margin-bottom: 30px;">
+            Formación Académica
+        </h3>
 
-      <div class="education-grid">
-          
-        <div class="edu-item">
-          <p class="date">2025 (En curso)</p>
-          <h4 class="edu-degree">Especialización en Desarrollo Backend & Frontend</h4>
-          <p class="edu-school">Plataforma Online / Autodidacta</p>
-          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
-              Enfoque en Python, Django y Dockerización de aplicaciones.
-          </p>
-          
-          <a href="" target="_blank" class="cert-btn">
-              <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-              Ver Certificado
-          </a>
+        <div class="education-grid">
+            
+            <div class="edu-item">
+                <p class="date">2025 (En curso)</p>
+                <h4 class="edu-degree">Especialización en Desarrollo Backend & Frontend</h4>
+                <p class="edu-school">Plataforma Online / Autodidacta</p>
+                <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
+                    Enfoque en Python, Django y Dockerización de aplicaciones.
+                </p>
+                <a href="#" class="cert-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    Ver Certificado
+                </a>
+            </div>
+
+            <div class="edu-item">
+                <p class="date">2025 - 2025</p>
+                <h4 class="edu-degree">Electricista</h4>
+                <p class="edu-school">Capacítate para el empleo</p>
+                <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
+                    Presentando a la fecha un avance de 100% y un puntaje de 8.86
+                </p>
+                <a href="certificados/Electricista.pdf" target="_blank" class="cert-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    Ver Certificado
+                </a>
+            </div>
+
+            <div class="edu-item">
+                <p class="date">2007</p>
+                <h4 class="edu-degree">CCNA-II</h4>
+                <p class="edu-school">ITLA</p>
+                <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
+                    CCNA 2 — Router and Routing Basics
+                </p>
+                <a href="certificados/CCNA_II.pdf" target="_blank" class="cert-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    Ver Certificado
+                </a>
+            </div>
+
+            <div class="edu-item">
+                <p class="date">2007</p>
+                <h4 class="edu-degree">CCNA-I</h4>
+                <p class="edu-school">ITLA</p>
+                <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
+                    CCNA 1 — Network Fundamentals
+                </p>
+                <a href="certificados/CCNA_I.pdf" target="_blank" class="cert-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    Ver Certificado
+                </a>
+            </div>
+
+            <div class="edu-item">
+                <p class="date">2007</p>
+                <h4 class="edu-degree">IT-II</h4>
+                <p class="edu-school">ITLA</p>
+                <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
+                    IT Essentials II: Network Operating Systems
+                </p>
+                <a href="certificados/IT_II.pdf" target="_blank" class="cert-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    Ver Certificado
+                </a>
+            </div>
+
+            <div class="edu-item">
+                <p class="date">2007</p>
+                <h4 class="edu-degree">IT-I</h4>
+                <p class="edu-school">ITLA</p>
+                <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
+                    IT Essentials I: PC Hardware and Software
+                </p>
+                <a href="certificados/IT_I.pdf" target="_blank" class="cert-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    Ver Certificado
+                </a>
+            </div>
+
+            <div class="edu-item">
+                <p class="date">2005 - 2006</p>
+                <h4 class="edu-degree">Certificado de Bachillerato</h4>
+                <p class="edu-school">Colegio Cristo Rey</p>
+                <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
+                    Bachillerato Mención: General, Modalidad: General.
+                </p>
+                <a href="certificados/Bachiller.pdf" target="_blank" class="cert-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    Ver Certificado
+                </a>
+            </div>
+
         </div>
-
-        <div class="edu-item">
-          <p class="date">2025 - 2025</p>
-          <h4 class="edu-degree">Electricista</h4>
-          <p class="edu-school">Capacitate para el empleo</p>
-          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
-            Presentando a la fecha un avance de 100% y un puntaje de 8.86
-          </p>
-
-          <a href="certificados/Electricista.pdf" target="_blank" class="cert-btn">
-              <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-              Ver Certificado
-          </a>
-        </div>
-
-        <div class="edu-item">
-          <p class="date">2007</p>
-          <h4 class="edu-degree">CCNA-II</h4>
-          <p class="edu-school">ITLA</p>
-          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
-            CCNA 2 — Router and Routing Basics
-          </p>
-
-          <a href="certificados/CCNA_II.pdf" target="_blank" class="cert-btn">
-              <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-              Ver Certificado
-          </a>
-        </div>
-
-        <div class="edu-item">
-          <p class="date">2007</p>
-          <h4 class="edu-degree">CCNA-I</h4>
-          <p class="edu-school">ITLA</p>
-          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
-            CCNA 1 — Network Fundamentals
-          </p>
-
-          <a href="certificados/CCNA_I.pdf" target="_blank" class="cert-btn">
-              <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-              Ver Certificado
-          </a>
-        </div>
-
-        <div class="edu-item">
-          <p class="date">2007</p>
-          <h4 class="edu-degree">IT-II</h4>
-          <p class="edu-school">ITLA</p>
-          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
-            IT Essentials II: Network Operating Systems
-          </p>
-
-          <a href="certificados/IT_II.pdf" target="_blank" class="cert-btn">
-              <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-              Ver Certificado
-          </a>
-        </div>
-
-        <div class="edu-item">
-          <p class="date">2007</p>
-          <h4 class="edu-degree">IT-I</h4>
-          <p class="edu-school">ITLA</p>
-          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
-            IT Essentials I: PC Hardware and Software
-          </p>
-
-          <a href="certificados/IT_I.pdf" target="_blank" class="cert-btn">
-              <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-              Ver Certificado
-          </a>
-        </div>
-
-        <div class="edu-item">
-          <p class="date"> 2005 - 2006</p>
-          <h4 class="edu-degree">Certificado de bachillerato</h4>
-          <p class="edu-school">Colegio Cristo Rey</p>
-          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">
-            Bachillerato Mencion: General, Modalidad: General, En el año escolar: 2005 - 2006, Convocatoria: Segunda Convocatoria
-          </p>
-
-          <a href="certificados/Bachiller.pdf" target="_blank" class="cert-btn">
-              <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-              Ver Certificado
-          </a>
-        </div>
-
-      </div>
     </div>
 
     <script>
-        // Seleccionamos todos los carruseles de la página
+        // 1. Lógica de los Carruseles (Galería)
         const carousels = document.querySelectorAll('.carousel');
     
         carousels.forEach(carousel => {
             const track = carousel.querySelector('.carousel-track');
+            // IMPORTANTE: Agregamos verificación para evitar errores si un carrusel está vacío
+            if (!track) return;
+
             const slides = Array.from(track.children);
             const nextButton = carousel.querySelector('.next');
             const prevButton = carousel.querySelector('.prev');
@@ -790,35 +733,33 @@
     
             // Función para mover el slide
             const moveToSlide = (index) => {
-                // Verificamos límites para hacer un loop infinito o detenerse
                 if (index < 0) index = slides.length - 1;
                 if (index >= slides.length) index = 0;
     
-                // Movemos el track usando CSS Transform
                 track.style.transform = 'translateX(-' + (index * 100) + '%)';
                 currentIndex = index;
             };
     
-            // Event Listeners
-            nextButton.addEventListener('click', () => {
-                moveToSlide(currentIndex + 1);
-            });
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    moveToSlide(currentIndex + 1);
+                });
+            }
     
-            prevButton.addEventListener('click', () => {
-                moveToSlide(currentIndex - 1);
-            });
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    moveToSlide(currentIndex - 1);
+                });
+            }
         });
+
+        // 2. Lógica del botón Contáctame (AHORA ESTÁ FUERA DEL LOOP)
+        function toggleContact() {
+            const contactBox = document.getElementById('contactInfoBox');
+            if (contactBox) {
+                contactBox.classList.toggle('active');
+            }
+        }
     </script>
-  </body>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
