@@ -372,22 +372,80 @@
           fill: currentColor; /* El icono toma el color del texto */
       }
 
+      /* Estilos para el contenedor de contacto oculto */
+      .contact-info {
+          max-height: 0; /* Oculto por defecto */
+          overflow: hidden;
+          transition: max-height 0.4s ease-out, opacity 0.4s ease;
+          opacity: 0;
+          margin-top: 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          align-items: center;
+      }
+
+      /* Clase que activaremos con JavaScript para mostrarlo */
+      .contact-info.active {
+          max-height: 200px; /* Altura suficiente para mostrar el contenido */
+          opacity: 1;
+          margin-top: 20px;
+      }
+
+      /* Estilos de los botones de contacto individuales */
+      .contact-link {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 10px 20px;
+          border-radius: 50px;
+          text-decoration: none;
+          color: #fff;
+          width: fit-content;
+          transition: background 0.3s;
+          border: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .contact-link:hover {
+          background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Colores específicos */
+      .whatsapp-link:hover { border-color: #25D366; color: #25D366; }
+      .email-link:hover { border-color: #EA4335; color: #EA4335; }
     </style>
   </head>
   
   <body>
     <header>
       <div class="profile-container">
-        <img
-          src="media/Perfil_con_fondo.jpg"
-          alt="Foto de Perfil"
-          class="profile-img"
-        />
+          <img src="media/Perfil_con_fondo.jpg" alt="Foto de Perfil Ismael" class="profile-img" />
       </div>
 
       <h1>Ismael Rodriguez Belliard</h1>
       <h2>Desarrollador Full Stack</h2>
-      <a href="#contacto" class="btn">Contáctame</a>
+
+      <button onclick="toggleContact()" class="btn" style="border:none; cursor:pointer; font-size:1rem;">
+          Contáctame
+      </button>
+
+      <div class="contact-info" id="contactInfoBox">
+          
+          <a href="https://wa.me/18295910723" target="_blank" class="contact-link whatsapp-link">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
+              </svg>
+              829-591-0723
+          </a>
+
+          <a href="mailto:rbismael88@gmail.com" class="contact-link email-link">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+              </svg>
+              rbismael88@gmail.com
+          </a>
+      </div>
     </header>
 
     <div class="container">
